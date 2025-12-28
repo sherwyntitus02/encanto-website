@@ -23,7 +23,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState({});
 
-  // Redirect if user is already authenticated
+  // Redirect if user is already authenticated -- test
   useEffect(() => {
     if (isAuthenticated && user) {
       // Redirect based on user type - check profileType property
@@ -49,29 +49,29 @@ const Signup = () => {
 
   const validateForm = () => {
     const errors = {};
-    
+
     if (!formData.name.trim()) {
       errors.name = 'Full name is required';
     }
-    
+
     if (!formData.email.trim()) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = 'Email is invalid';
     }
-    
+
     if (!formData.password) {
       errors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
     }
-    
+
     if (!formData.confirmPassword) {
       errors.confirmPassword = 'Please confirm your password';
     } else if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
-    
+
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -79,17 +79,17 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
       // Hash the password using the consistent method
       const passwordHash = await hashPassword(formData.password);
-      
+
       // Prepare signup data according to the API format
       const signupData = {
         Name: formData.name.trim(),
@@ -99,20 +99,20 @@ const Signup = () => {
         CreatedTimestamp: Date.now(),
         UpdatedTimestamp: Date.now()
       };
-      
+
       // Call the signup API
       const response = await register(signupData);
-      
+
       console.log('Signup successful:', response);
-      
+
       // Redirect to login page on successful signup
-      navigate('/login', { 
-        state: { 
+      navigate('/login', {
+        state: {
           message: 'Account created successfully! Please log in.',
-          email: formData.email 
-        } 
+          email: formData.email
+        }
       });
-      
+
     } catch (error) {
       console.error('Signup error:', error);
       setError(error.message || 'An error occurred during signup. Please try again.');
@@ -123,9 +123,9 @@ const Signup = () => {
 
   return (
     <Box className="signup-container">
-      <img 
-        src={EncantoLogo} 
-        alt="Encanto Logo" 
+      <img
+        src={EncantoLogo}
+        alt="Encanto Logo"
         style={{
           position: 'absolute',
           top: '20px',
@@ -138,13 +138,13 @@ const Signup = () => {
         <Typography variant="h4" component="h2" className="signup-title" sx={{ fontFamily: 'Inter, sans-serif' }}>
           Welcome to Encanto
         </Typography>
-        
+
         {error && (
           <Alert severity="error" sx={{ mb: 2, fontFamily: 'Inter, sans-serif' }}>
             {error}
           </Alert>
         )}
-        
+
         <Box component="form" onSubmit={handleSubmit} className="form-content">
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
             <TextField
@@ -158,8 +158,8 @@ const Signup = () => {
               onChange={handleChange}
               error={!!validationErrors.name}
               helperText={validationErrors.name}
-              sx={{ 
-                mb:1,
+              sx={{
+                mb: 1,
                 flex: 1,
                 '& .MuiOutlinedInput-root': {
                   height: '42px',
@@ -177,10 +177,10 @@ const Signup = () => {
                 }
               }}
             />
-            <FormControl 
-              variant="outlined" 
+            <FormControl
+              variant="outlined"
               margin="normal"
-              sx={{ 
+              sx={{
                 minWidth: 115,
                 mb: 1,
                 '& .MuiOutlinedInput-root': {
@@ -225,7 +225,7 @@ const Signup = () => {
             onChange={handleChange}
             error={!!validationErrors.email}
             helperText={validationErrors.email}
-            sx={{ 
+            sx={{
               mb: 2,
               '& .MuiOutlinedInput-root': {
                 height: '42px',
@@ -257,7 +257,7 @@ const Signup = () => {
             onChange={handleChange}
             error={!!validationErrors.password}
             helperText={validationErrors.password}
-            sx={{ 
+            sx={{
               mb: 2,
               '& .MuiOutlinedInput-root': {
                 height: '42px',
@@ -289,7 +289,7 @@ const Signup = () => {
             onChange={handleChange}
             error={!!validationErrors.confirmPassword}
             helperText={validationErrors.confirmPassword}
-            sx={{ 
+            sx={{
               mb: 4,
               '& .MuiOutlinedInput-root': {
                 height: '42px',
@@ -308,24 +308,24 @@ const Signup = () => {
             }}
           />
 
-          <Button 
-            type="submit" 
-            fullWidth 
-            variant="contained" 
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
             className="submit-btn"
             disabled={loading}
             sx={{ height: '42px', fontFamily: 'Inter, sans-serif' }}
           >
             {loading ? 'Creating Account...' : 'Sign Up'}
           </Button>
-          
+
           <Typography variant="body2" className="login-link" sx={{ fontFamily: 'Inter, sans-serif' }}>
             Already have an account?{' '}
             <Link to="/login" className="login-link-anchor">
               Login here
             </Link>
           </Typography>
-          
+
           {/* Powered By Section */}
           <Box className="powered-by-section">
             <Box className="powered-by-line-container">
@@ -336,9 +336,9 @@ const Signup = () => {
               <Box className="powered-by-line-right"></Box>
             </Box>
             <Box className="azure-logo-container">
-              <img 
-                src={AzureLogo} 
-                alt="Azure Logo" 
+              <img
+                src={AzureLogo}
+                alt="Azure Logo"
                 className="azure-logo"
               />
             </Box>
