@@ -69,10 +69,10 @@ const Login = () => {
     try {
       // Hash the password using the consistent method as signup
       const passwordHash = await hashPassword(formData.password);
-      
+
       // Call the context login function which handles both API call and state update
       await contextLogin({ email: formData.email, passwordHash });
-      
+
       // Don't set loading to false here - let the redirect happen
       // The useEffect will trigger and handle the redirect
     } catch (error) {
@@ -86,9 +86,9 @@ const Login = () => {
 
   return (
     <Box className="login-container">
-      <img 
-        src={EncantoLogo} 
-        alt="Encanto Logo" 
+      <img
+        src={EncantoLogo}
+        alt="Encanto Logo"
         style={{
           position: 'absolute',
           top: '20px',
@@ -99,21 +99,21 @@ const Login = () => {
       />
       <Paper className="login-form" elevation={0}>
         <Typography variant="h4" component="h2" className="login-title" sx={{ fontFamily: 'Inter, sans-serif' }}>
-          Log in to your account
+          Log on to your account
         </Typography>
-        
+
         {successMessage && (
           <Alert severity="success" sx={{ mb: 2, fontFamily: 'Inter, sans-serif' }}>
             {successMessage}
           </Alert>
         )}
-        
+
         {error && (
           <Alert severity="error" sx={{ mb: 2, fontFamily: 'Inter, sans-serif' }}>
             {error}
           </Alert>
         )}
-        
+
         <Box component="form" onSubmit={handleSubmit} className="form-content">
           <TextField
             fullWidth
@@ -126,7 +126,7 @@ const Login = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            sx={{ 
+            sx={{
               mb: 2,
               '& .MuiOutlinedInput-root': {
                 height: '42px',
@@ -153,7 +153,7 @@ const Login = () => {
             required
             value={formData.password}
             onChange={handleChange}
-            sx={{ 
+            sx={{
               mb: 4,
               '& .MuiOutlinedInput-root': {
                 height: '42px',
@@ -169,24 +169,24 @@ const Login = () => {
             }}
           />
 
-          <Button 
-            type="submit" 
-            fullWidth 
-            variant="contained" 
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
             className="submit-btn"
             disabled={loading} // Disable button while loading
             sx={{ height: '42px', fontFamily: 'Inter, sans-serif' }}
           >
             {loading ? 'Logging in...' : 'Login'}
           </Button>
-          
+
           <Typography variant="body2" className="signup-link" sx={{ fontFamily: 'Inter, sans-serif' }}>
             Don't have an account?{' '}
             <Link to="/signup" className="signup-link-anchor">
               Sign up here
             </Link>
           </Typography>
-          
+
           {/* Powered By Section */}
           <Box className="powered-by-section">
             <Box className="powered-by-line-container">
@@ -197,9 +197,9 @@ const Login = () => {
               <Box className="powered-by-line-right"></Box>
             </Box>
             <Box className="azure-logo-container">
-              <img 
-                src={AzureLogo} 
-                alt="Azure Logo" 
+              <img
+                src={AzureLogo}
+                alt="Azure Logo"
                 className="azure-logo"
               />
             </Box>
