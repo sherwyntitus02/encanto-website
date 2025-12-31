@@ -71,7 +71,7 @@ export const AppProvider = ({ children }) => {
     } catch (error) {
       if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
         console.error('❌ CORS Error: Your .NET Web API backend needs CORS configuration');
-        console.error('🔧 Backend is running on: https://encanto-webapi.azurewebsites.net/swagger/index.html');
+        console.error('🔧 Backend is running on: https://encanto-webapi-v2.azurewebsites.net/swagger/index.html');
         console.error('🌐 Frontend is running on: http://localhost:5173');
         console.error('💡 Add CORS policy to your .NET Web API to allow http://localhost:5173');
       } else {

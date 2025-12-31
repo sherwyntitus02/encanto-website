@@ -4,7 +4,7 @@ import * as signalR from "@microsoft/signalr";
 // Centralized SignalR connection management for real-time updates
 
 // Configuration - Update this URL to match your backend API
-const API_BASE_URL = 'https://encanto-webapi.azurewebsites.net';
+const API_BASE_URL = 'https://encanto-webapi-v2.azurewebsites.net';
 const HUB_URL = `${API_BASE_URL}/notificationhub`;
 
 // Custom HTTP client to add session-key header
