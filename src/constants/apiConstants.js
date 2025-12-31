@@ -4,7 +4,7 @@
 // 🌐 API Configuration
 export const API_CONFIG = {
   // Base URL for all API calls
-  BASE_URL: 'https://encanto-webapi.azurewebsites.net',
+  BASE_URL: 'https://encanto-webapi-v2.azurewebsites.net',
   //BASE_URL: 'https://localhost:7207',
   
   // Default headers for API requests
