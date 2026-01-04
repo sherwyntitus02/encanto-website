@@ -99,7 +99,7 @@ const Login = () => {
       />
       <Paper className="login-form" elevation={0}>
         <Typography variant="h4" component="h2" className="login-title" sx={{ fontFamily: 'Inter, sans-serif' }}>
-          Log on to your account
+          Log in to your account
         </Typography>
 
         {successMessage && (
